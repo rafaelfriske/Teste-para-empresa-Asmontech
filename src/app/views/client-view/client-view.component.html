@@ -1,0 +1,106 @@
+<div class="client-view">
+    <div class="create-order-section">
+      <div class="period-banner" [class]="currentPeriod">
+        <div class="period-time">{{ getCurrentTime() }}</div>
+       
+      </div>
+
+      <h2>Novo Pedido</h2>
+      
+      <div class="order-form">
+        <div class="item-input">
+          <select 
+            [(ngModel)]="newItem.type"
+            class="input"
+            required
+            (change)="getProdutosbytipo(newItem.type)"
+          >
+            <option value="" disabled selected>Selecione o tipo do item</option>
+            <option *ngFor="let type of itemTypes" [value]="type.idTipoProduto">
+              {{ type.tipoProduto }}
+            </option>
+          </select>
+          <select 
+            [(ngModel)]="newItem.name"
+            class="input"
+            required
+            
+          >
+            <option value="" disabled selected>Selecione o tipo do item</option>
+            <option *ngFor="let type of listProduct" [value]="type.nomeProduto">
+              {{ type.nomeProduto }}
+            </option>
+          </select>
+          <input 
+            type="number" 
+            [(ngModel)]="newItem.quantity" 
+            placeholder="Quantity"
+            class="input"
+          >
+          <textarea 
+            [(ngModel)]="newItem.notes" 
+            placeholder="Observações"
+            class="input"
+          ></textarea>
+          <button 
+            (click)="addItem()" 
+            [disabled]="!newItem.type || !newItem.name || newItem.quantity < 1"
+            class="button"
+          >
+            Adicionar Item
+          </button>
+        </div>
+
+        <div class="order-preview">
+          <h3>Pedido atual</h3>
+          <div class="current-order-items">
+            <div *ngFor="let item of orderItems" class="order-item">
+              <div class="item-main">
+                <span class="item-quantity">{{ item.quantity }}x</span>
+                <span class="item-name">{{ item.name }}</span>
+                <span class="item-type">(teste)</span>
+              </div>
+              <div *ngIf="item.notes" class="item-notes">
+                {{ item.notes }}
+              </div>
+            </div>
+          </div>
+          <button 
+            (click)="submitOrder()" 
+            [disabled]="!orderItems.length"
+            class="button submit-button"
+          >
+            Enviar Pedido
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="orders-section">
+      <h2>Meus Pedidos</h2>
+      <div class="orders-grid">
+        <div *ngFor="let order of listClient" class="order-card">
+          <div class="order-header">
+            <span>Pedido #{{ order.idPedido }}</span>
+            <span class="status" [ngClass]="order.idStatus">{{ order.idStatus }}</span>
+          </div>
+          
+          <ul class="items-list">
+            <li *ngFor="let item of order.itens">
+              <div class="item-main">
+                <strong>{{ item.qtd }}x</strong> {{ item.idProduto }}
+                <span class="item-type">(teste)</span>
+              </div>
+              <div *ngIf="item.notas" class="item-notes">
+                {{ item.notas }}
+              </div>
+            </li>
+          </ul>
+      
+          <div class="order-footer">
+            <span class="time">{{ order.dtRegister | date:'short' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

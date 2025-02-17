@@ -1,0 +1,81 @@
+.kitchen-view {
+    padding: 20px;
+  }
+
+  .orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .order-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px;
+  }
+
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .status {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #666;
+  }
+
+  .items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .items-list li {
+    padding: 5px 0;
+  }
+
+  .item-type {
+    color: #666;
+    font-size: 0.9em;
+  }
+
+  .notes {
+    color: #666;
+    font-style: italic;
+  }
+
+  .order-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .button {
+    padding: 8px 16px;
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: #283593;
+  }
+
+  .button.delete {
+    background-color: #dc3545;
+  }
+
+  .button.delete:hover {
+    background-color: #c82333;
+  }

@@ -1,0 +1,44 @@
+<div class="kitchen-view">
+  <h2>Kitchen Orders</h2>
+  
+  <div class="orders-grid">
+    <div *ngFor="let order of listClient" class="order-card">
+      <div class="order-header">
+        <span>Pedido #{{ order.idPedido }}</span>
+        <span class="status">{{ order.idStatus }}</span>
+      </div>
+      
+      <ul class="items-list">
+        <li *ngFor="let item of order.itens">
+          <strong>{{ item.qtd }}x</strong> {{ item.idProduto }}
+          <span class="item-type">(teste)</span>
+          <small *ngIf="item.notas" class="notes">({{ item.notas }})</small>
+        </li>
+      </ul>
+
+      <div class="order-actions">
+        <button 
+          *ngIf="order.idStatus === 'pending'"
+          (click)="updateStatus(order.idPedido, 'preparing')"
+          class="button"
+        >
+          Start Preparing
+        </button>
+        <button 
+          *ngIf="order.idStatus === 'preparing'"
+          (click)="updateStatus(order.idPedido, 'ready')"
+          class="button"
+        >
+          Mark as Ready
+        </button>
+        <button 
+          *ngIf="order.idStatus === 'ready'"
+          (click)="deleteOrder(order.idPedido)"
+          class="button delete"
+        >
+          Delete Order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

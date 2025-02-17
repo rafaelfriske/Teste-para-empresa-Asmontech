@@ -1,0 +1,31 @@
+Conteudo entregue no projeto
+
+Banco de Dados
+
+Criei 2 scrips para criação do banco de dados juntamente com as tabelas necessárias e dados iniciais.
+após executas esses scrips atenção na string de conexão do banco no projeto,
+pois está com a string de conexão do meu banco local.
+Fiz pelo sqlite, tem um arquivo que chama "meu banco" é só abrir pelo Db Browser
+Link para download: https://sqlitebrowser.org/
+
+Back-End
+
+projeto feito com Web API .net
+
+Front-End
+
+A tela encontra-se em andamento, faltando adicionar e alterar o status do pedido e deletar o mesmo,
+por falta de tempo não consegui terminar.
+Foi feito em angular 12, usando typescript, html e css.
+
+obs: 
+Na criação de pedido a api precisa estar rodando, pois o projeto está todo dinamico.
+Iniciei um teste unitário na api. Eu não tenho costume de usar diariamente, mas como estou estudando sobre
+queria implementar no projeto, porém com a falta de tempo não consegui executa-lo nos métodos.
+Devido a falta de tempo não consegui entregar como queria, mas acredito que consegui mostrar um pouco do meu trabalho.
+
+Rodando o projeto(start)
+
+Para rodar o front, se atentar a versão do node, pois o angular usado no projeto foi o 19.
+Para rodas a api, se atentar a string de conexao, no arquivo eviroments do angular você pode alterar.
+
