@@ -45,7 +45,6 @@ export class ClientViewComponent implements OnInit {
     this.getProductType();
     this.getOrders();
     // this.getHours();
-    // Update period every minute
     setInterval(() => this.updateCurrentPeriod(), 60000);
 
   }
@@ -54,8 +53,8 @@ export class ClientViewComponent implements OnInit {
     
     const now = new Date();
   
-    // Formatar a data e hora no formato ISO 8601 sem milissegundos
-    const isoString = now.toISOString().split('.')[0] + "Z"; // Remove milissegundos
+   
+    const isoString = now.toISOString().split('.')[0] + "Z";
   
     this.orderService.getHourKitchen(isoString).subscribe(
       c => {
@@ -106,10 +105,6 @@ export class ClientViewComponent implements OnInit {
     return this.mealPeriodService.getPeriodLabel(this.currentPeriod);
   }
 
-  // getTypeLabel(type: OrderItem['type']) {
-  //   return ITEM_TYPES.find(t => t.value === type)?.label || type;
-  // }
-
   addItem() {
     if (this.newItem.name && this.newItem.quantity > 0 && this.newItem.type) { 
       this.orderItems.push({ ...this.newItem });
@@ -118,16 +113,13 @@ export class ClientViewComponent implements OnInit {
   }
 
 submitOrder() {
-  if (this.orderItems.length > 0) {
-    debugger; // Para depuração
-
-    // Cria o objeto PedidoModel
+  if (this.orderItems.length > 0) {   
     const pedido = {
-      IdCliente: 1, // Substitua pelo ID do cliente real
-      IdStatus: 1, // Substitua pelo status real
+      IdCliente: 1, // id mocado do cliente
+      IdStatus: 1, // será o id do "preparando"
       DtRegister: new Date().toISOString(),
       Itens: this.orderItems.map(item => ({
-        IdProduto: item.type, // Supondo que o tipo do item seja o ID do produto
+        IdProduto: item.type, 
         Qtd: item.quantity,
         Notas: item.notes
       }))
@@ -138,7 +130,7 @@ submitOrder() {
       next: (response) => {
         this.getOrders();
         console.log('Pedido adicionado com sucesso:', response);
-        this.orderItems = []; // Limpa a lista de itens após o envio
+        this.orderItems = []; 
       },
       error: (err) => {
         console.error('Erro ao adicionar pedido:', err);
